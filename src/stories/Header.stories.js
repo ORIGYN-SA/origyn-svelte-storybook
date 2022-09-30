@@ -1,7 +1,7 @@
-import Header from './Header.svelte';
+import Header from '../lib/header/Header.svelte'
 
 export default {
-  title: 'Example/Header',
+  title: 'Component/Header',
   component: Header,
   parameters: {
     // More on Story layout: https://storybook.js.org/docs/svelte/configure/story-layout

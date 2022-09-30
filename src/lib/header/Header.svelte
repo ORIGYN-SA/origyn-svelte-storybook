@@ -1,126 +1,86 @@
-<script lang="ts">
-	import { page } from '$app/stores';
-	import logo from './svelte-logo.svg';
+<script>
+  import Button from '../button/Button.svelte';
+
+  import { createEventDispatcher } from 'svelte';
+
+  export let user = null;
+
+  const dispatch = createEventDispatcher();
+
+  function onLogin(event) {
+    dispatch('login', event);
+  }
+  function onLogout(event) {
+    dispatch('logout', event);
+  }
+  function onCreateAccount(event) {
+    dispatch('createAccount', event);
+  }
 </script>
 
 <header>
-	<div class="corner">
-		<a href="https://kit.svelte.dev">
-			<img src={logo} alt="SvelteKit" />
-		</a>
-	</div>
-
-	<nav data-sveltekit-prefetch>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
-		</svg>
-		<ul>
-			<li class:active={$page.url.pathname === '/'}>
-				<a href="/">Home</a>
-			</li>
-			<li class:active={$page.url.pathname === '/about'}>
-				<a href="/about">About</a>
-			</li>
-			<li class:active={$page.url.pathname === '/todos'}>
-				<a href="/todos">Todos</a>
-			</li>
-		</ul>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
-			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
-		</svg>
-	</nav>
-
-	<div class="corner">
-		<!-- TODO put something else here? github link? -->
-	</div>
+  <div class="wrapper">
+    <div>
+      <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" fill-rule="evenodd">
+          <path
+            d="M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z"
+            fill="#FFF" />
+          <path
+            d="M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z"
+            fill="#555AB9" />
+          <path d="M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z" fill="#91BAF8" />
+        </g>
+      </svg>
+      <h1>Acme</h1>
+    </div>
+    <div>
+      {#if user}
+        <span class="welcome">
+          Welcome, <b>{user.name}</b>!
+        </span>
+        <Button size="small" on:click={onLogout} label="Log out" />
+      {/if}
+      {#if !user}
+        <Button size="small" on:click={onLogin} label="Log in" />
+        <Button primary size="small" on:click={onCreateAccount} label="Sign up" />
+      {/if}
+    </div>
+  </div>
 </header>
 
 <style>
-	header {
-		display: flex;
-		justify-content: space-between;
-	}
+  .wrapper {
+  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-	.corner {
-		width: 3em;
-		height: 3em;
-	}
+svg {
+  display: inline-block;
+  vertical-align: top;
+}
 
-	.corner a {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
-	}
+h1 {
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 1;
+  margin: 6px 0 6px 10px;
+  display: inline-block;
+  vertical-align: top;
+}
 
-	.corner img {
-		width: 2em;
-		height: 2em;
-		object-fit: contain;
-	}
+button + button {
+  margin-left: 10px;
+}
 
-	nav {
-		display: flex;
-		justify-content: center;
-		--background: rgba(255, 255, 255, 0.7);
-	}
+.welcome {
+  color: #333;
+  font-size: 14px;
+  margin-right: 10px;
+}
 
-	svg {
-		width: 2em;
-		height: 3em;
-		display: block;
-	}
-
-	path {
-		fill: var(--background);
-	}
-
-	ul {
-		position: relative;
-		padding: 0;
-		margin: 0;
-		height: 3em;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		list-style: none;
-		background: var(--background);
-		background-size: contain;
-	}
-
-	li {
-		position: relative;
-		height: 100%;
-	}
-
-	li.active::before {
-		--size: 6px;
-		content: '';
-		width: 0;
-		height: 0;
-		position: absolute;
-		top: 0;
-		left: calc(50% - var(--size));
-		border: var(--size) solid transparent;
-		border-top: var(--size) solid var(--accent-color);
-	}
-
-	nav a {
-		display: flex;
-		height: 100%;
-		align-items: center;
-		padding: 0 1em;
-		color: var(--heading-color);
-		font-weight: 700;
-		font-size: 0.8rem;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		text-decoration: none;
-		transition: color 0.2s linear;
-	}
-
-	a:hover {
-		color: var(--accent-color);
-	}
 </style>

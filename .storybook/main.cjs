@@ -2,8 +2,8 @@ const sveltePreprocess = require('svelte-preprocess');
 
 module.exports = {
     stories: [
-        '../src/**/*.stories.mdx',
-        '../src/**/*.stories.@(js|jsx|ts|tsx|svelte)',
+        '../src/stories/**/*.stories.mdx',
+        '../src/components/**/*.stories.@(js|jsx|ts|tsx|svelte)',
     ],
     addons: [
         '@storybook/addon-links',

@@ -1,5 +1,5 @@
 
-import RangeSlider from '../lib/rangeSlider/RangeSliderProcess.svelte';
+import RangeSlider from '../lib/rangeSlider/RangeSlider.svelte';
 
 
 export default {

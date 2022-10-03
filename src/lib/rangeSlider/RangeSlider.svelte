@@ -2,6 +2,7 @@
   <output class="value-thumb" ><p>Empty</p></output>
   <input
   type="range"
+  class="range-input"
   />
 </div>
 <style>

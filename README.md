@@ -1,3 +1,9 @@
+# Origyn Svelt Storybook
+
+### Purpose
+
+This is a place holder project for creating a svelt version of the storybook. It is not under active development.
+
 # Origyn Svelte Storybook
 
 Everything you need to build a Svelte project with storybook, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte) and [`storybook`](https://storybook.js.org/).
